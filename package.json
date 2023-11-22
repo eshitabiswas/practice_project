@@ -1,0 +1,31 @@
+{
+  "name": "pratice_project",
+  "version": "1.0.0",
+  "description": "This is a test project'",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "eshitabiswas965@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/your-repository.git"
+  },
+  "keywords": [
+    "[\"awesome\"",
+    "\"package\"",
+    "\"amazing\"]"
+  ],
+  "bugs": {
+    "url": "https://github.com/your-username/your-repository/issues"
+  },
+  "homepage": "https://github.com/your-username/your-repository#readme",
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "package.json": "^2.0.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.1"
+  }
+}
