@@ -1,7 +1,7 @@
 const Hapi = require('@hapi/hapi');
-const {
-    userController,
-} = require('./controller/controller');
+const userController = require('./controller/controller');
+const sequelize = require('./config/sequelize');
+const routes = require('./router/router');
 
 
 const init = async () => {
@@ -10,42 +10,18 @@ const init = async () => {
         host: 'localhost'
     });
 
-    server.route({
-        // method: 'GET',
-        // path: '/',
-        // handler: (request, h) => {
-        //     return 'Hello, Hapi.js!';
-        // }
-        method: 'POST',
-        path: '/api/user/add', // Define the path for your POST route
-        handler: userController.saveUser,
-    });
+    server.route(routes);
 
-    server.route({
-        // method: 'GET',
-        // path: '/',
-        // handler: (request, h) => {
-        //     return 'Hello, Hapi.js!';
-        // }
-        method: 'POST',
-        path: '/api/user/update', // Define the path for your POST route
-        handler: userController.updateUser,
-    });
+    async function initializeSequelize() {
+        try {
+            await sequelize.authenticate();
+            console.log('Connection to the database has been established successfully.');
+        } catch (error) {
+            console.error('Unable to connect to the database:', error);
+        }
+    }
 
-    server.route({
-        // method: 'GET',
-        // path: '/',
-        // handler: (request, h) => {
-        //     return 'Hello, Hapi.js!';
-        // }
-        method: 'POST',
-        path: '/api/user/delete', // Define the path for your POST route
-        handler: userController.deleteUser,
-    });
-
-
-
-
+    initializeSequelize();
     await server.start();
     console.log('Server running on %s', server.info.uri);
 };
